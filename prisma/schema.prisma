@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -35,11 +34,17 @@ members BusinessMember[]
 
 model BusinessMember {
 id String @id @default(uuid())
-role String
+role Role
 userId String
 businessId String
 
 user User @relation(fields:[userId], references: [id])
 business Business @relation(fields:[businessId], references: [id])
 @@unique([userId,businessId])
+}
+
+enum Role {
+OWNER
+ADMIN
+STAFF
 }

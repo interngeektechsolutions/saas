@@ -1,0 +1,6 @@
+                  id                  | name  |       email       |                           password                           |        createdAt        
+--------------------------------------+-------+-------------------+--------------------------------------------------------------+-------------------------
+ a8796c0b-d8ad-4b03-93f2-5a554b8fa9ac | Suraj | suraj@gmail.com   | $2b$10$ddFOHwpLoMxXEOzO0QF5JOiWJe0MBRPQTjHGNtzRTKb7NDS4YmQRu | 2026-02-13 07:03:13.055
+ 39e9638f-50d3-4d84-beae-b9cfd69581cd | raj   | suraj23@gmail.com | $2b$10$j/X9bHwzRuYq2RddZ7EvHe1xkXyHFi48uPs/3FiSioO11UKWS1nGu | 2026-02-13 07:03:50.744
+(2 rows)
+
