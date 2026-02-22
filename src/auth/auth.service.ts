@@ -60,8 +60,44 @@ export class AuthService {
       throw new UnauthorizedException('Invalid Password or Email');
     }
 
-    const token = this.jwt.sign({ userId: user.id });
+    const business = await this.prisma.businessMember.findFirst({
+      where: {
+        userId: user.id,
+      },
+    });
 
-    return { access_token: token, userId: user.id };
+    if (!business) {
+      throw new Error('Business not found');
+    }
+
+    const token = this.jwt.sign({
+      userId: user.id,
+      businessId: business.businessId,
+    });
+
+    return {
+      access_token: token,
+      userId: user.id,
+      businessId: business.businessId,
+    };
+  }
+
+  async switchBusiness(userId: string, businessId: string) {
+    const membership = await this.prisma.businessMember.findFirst({
+      where: {
+        userId,
+        businessId,
+      },
+    });
+    if (!membership) {
+      throw new Error('Membership not found');
+    }
+
+    const token = this.jwt.sign({
+      userId,
+      businessId,
+    });
+
+    return { access_token: token, userId, businessId };
   }
 }

@@ -64,9 +64,11 @@ export class UsersController {
     });
 
     await this.prisma.businessMember.create({
-      userId: req.user.userId,
-      businessId: business.id,
-      role: 'OWNER',
+      data: {
+        userId: req.user.userId,
+        businessId: business.id,
+        role: 'OWNER',
+      },
     });
     return business;
   }
