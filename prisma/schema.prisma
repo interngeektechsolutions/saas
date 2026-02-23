@@ -31,7 +31,6 @@ createdAt DateTime @default(now())
 members BusinessMember[]
 }
 
-
 model BusinessMember {
 id String @id @default(uuid())
 role Role
@@ -48,3 +47,16 @@ OWNER
 ADMIN
 STAFF
 }
+
+
+model AuditLog {
+
+id              String      @id @default(uuid())
+businessId      String
+userId          String
+action          String
+entity          String
+entityId        String
+createdAt       DateTime    @default(now())
+}
+
