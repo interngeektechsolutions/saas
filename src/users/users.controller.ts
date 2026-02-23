@@ -5,9 +5,11 @@ import {
   UseGuards,
   Request,
   Body,
+  Delete,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { PrismaService } from '../prisma/prisma.service';
+import { Roles } from '../roles/roles.decorator';
 @Controller('users')
 export class UsersController {
   constructor(private prisma: PrismaService) {}
@@ -71,5 +73,21 @@ export class UsersController {
       },
     });
     return business;
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Roles('OWNER')
+  @Delete('businesses')
+  async deleteBusiness(@Request() req) {
+    const business = await this.prisma.business.findUnique({
+      where: { id: req.user.businessId },
+    });
+    if (!business) {
+      throw new Error('Business not found.');
+    }
+
+    await this.prisma.business.delete({
+      where: { id: business.id },
+    });
   }
 }

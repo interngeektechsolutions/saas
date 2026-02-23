@@ -39,3 +39,6 @@ ALTER TABLE "BusinessMember" ADD CONSTRAINT "BusinessMember_userId_fkey" FOREIGN
 
 -- AddForeignKey
 ALTER TABLE "BusinessMember" ADD CONSTRAINT "BusinessMember_businessId_fkey" FOREIGN KEY ("businessId") REFERENCES "Business"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+ALTER TABLE "User" ADD COLUMN ("role" TEXT NOT NULL);
+

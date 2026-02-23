@@ -73,12 +73,14 @@ export class AuthService {
     const token = this.jwt.sign({
       userId: user.id,
       businessId: business.businessId,
+      role: business.role,
     });
 
     return {
       access_token: token,
       userId: user.id,
       businessId: business.businessId,
+      role: business.role,
     };
   }
 
@@ -96,8 +98,9 @@ export class AuthService {
     const token = this.jwt.sign({
       userId,
       businessId,
+      role: membership.role,
     });
 
-    return { access_token: token, userId, businessId };
+    return { access_token: token, userId, businessId, role: membership.role };
   }
 }
