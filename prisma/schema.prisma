@@ -59,3 +59,29 @@ entityId        String
 createdAt       DateTime    @default(now())
 }
 
+
+model Permission {
+id String @id @default(uuid())
+name String @unique
+description String?
+roles RolePermission[]
+}
+
+
+model RolePermission {
+
+id String @id @default(uuid())
+role String
+permissionId String
+permission Permission @relation(fields:[permissionId],references:[id])
+}
+
+
+
+
+
+
+
+
+
+
