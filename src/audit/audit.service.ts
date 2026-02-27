@@ -9,7 +9,7 @@ export class AuditService {
     userId: string;
     action: string;
     entity: string;
-    entityId?: string;
+    entityId: string;
   }) {
     return await this.prisma.auditLog.create({
       data,
